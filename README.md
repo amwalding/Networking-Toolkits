@@ -1,5 +1,5 @@
 # WinNetToolkit
-My Windows Networking Toolkit script.
+My Windows Networking Toolkit batch file/script.
 This is a Windows only batch file.
 Well folks, I have decided to make this toolkit available to all. Just download it here: https://www.cellstream.com/2024/02/17/our-windows-networking-toolkit/
 
