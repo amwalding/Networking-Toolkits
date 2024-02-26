@@ -13,19 +13,19 @@ What is our Toolkit? It is a little executable that runs only on Windows systems
  ###                          by Andrew Walding
  ###              www.cellstream.com   www.netscionline.com
 
-<samp>+------------------------------------+-------------------------------------+
-| 1) System Information              | 14) Display Wi-Fi Interface details |
-| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |
-| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |
-| 4) Release current IP Addresses    | 17) Delete ALL Wi-Fi Profiles       |
-| 5) Display the MAC Addresses       | 18) Display Wi-Fi Driver Information|
-| 6) Display the DNS Cache           | 19) Display Wi-Fi Networks and Keys |
-| 7) Flush the DNS Cache             | 20) Display Nearby Wi-Fi Networks   |
-| 8) Ping Google DNS                 | 21) DNS Lookup - domain             |
-| 9) Ping a specific IP Address      | 22) DNS Reverse Lookup - IP Address |
-|10) Traceroute to Google DNS        | 23) Display the IPv4 Routing Table  |
-|11) Use only LAN network            | 24) Display the IPv6 Routing Table  |
-|12) Use only WLAN network           | 25) Display the IPv4 ARP Cache      |
+<samp>+------------------------------------+-------------------------------------+<br>
+| 1) System Information              | 14) Display Wi-Fi Interface details |<br>
+| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |<br>
+| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |<br>
+| 4) Release current IP Addresses    | 17) Delete ALL Wi-Fi Profiles       |<br>
+| 5) Display the MAC Addresses       | 18) Display Wi-Fi Driver Information|<br>
+| 6) Display the DNS Cache           | 19) Display Wi-Fi Networks and Keys |<br>
+| 7) Flush the DNS Cache             | 20) Display Nearby Wi-Fi Networks   |<br>
+| 8) Ping Google DNS                 | 21) DNS Lookup - domain             |<br>
+| 9) Ping a specific IP Address      | 22) DNS Reverse Lookup - IP Address |<br>
+|10) Traceroute to Google DNS        | 23) Display the IPv4 Routing Table  |<br>
+|11) Use only LAN network            | 24) Display the IPv6 Routing Table  |<br>
+|12) Use only WLAN network           | 25) Display the IPv4 ARP Cache      |<br>
 |13) Disable All interfaces          | 26) Display the IPv6 Neighbor Cache |
 +------------------------------------+-------------------------------------+
 |                                    |                                     |
