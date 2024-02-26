@@ -415,7 +415,7 @@ jumpto start
 S20:
 echo Display Nearby Wi-Fi Networks
 echo ------------------------------------------
-netsh wlan show networks mode=bssid
+nmcli dev wifi list
 sleep
 jumpto start
 
@@ -438,28 +438,28 @@ jumpto start
 S23:
 echo Display the Computer's IPv4 Route Table
 echo ------------------------------------------
-route print -4
+route -n
 sleep
 jumpto start
 
 S24:
 echo Display the Computer's IPv6 Route Table
 echo ------------------------------------------
-route print -6
+route -n -6
 sleep
 jumpto start
 
 S25:
 echo Display the Computer's IPv4 ARP Cache
 echo ------------------------------------------
-arp -a
+arp
 sleep
 jumpto start
 
 S26:
 echo Display the Computer's IPv6 Neighbor Cache
 echo ------------------------------------------
-netsh interface ipv6 show neighbors
+ip -6 neighbor show
 sleep
 jumpto start
 
