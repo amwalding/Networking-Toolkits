@@ -1,5 +1,5 @@
 #
-# This is a Linux Networking Bash File
+# This is a Linux Networking Tools Bash File
 #
 # The idea is to provide the user with a simple way to execute a number of different
 # networking tools simply from a menu driven interface.
@@ -26,7 +26,7 @@ echo
 echo Select an item, hit Q to quit.
 echo
 echo "+------------------------------------+-------------------------------------+"
-echo "| 1) System Information              | 14) Display Wi-Fi Interface details |"
+echo "| 1) System Information              | 14) Display All Interface details   |"
 echo "| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |"
 echo "| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |"
 echo "| 4) Release current IP Addresses    | 17) Delete ALL Wi-Fi Profiles       |"
@@ -341,9 +341,9 @@ sleep
 jumpto start
 
 S14:
-echo Display Wi-Fi Interface Details
+echo Display All Interface Details
 echo ------------------------------------------
-netsh wlan show interface
+lshw -class network
 sleep
 jumpto start
 
@@ -423,15 +423,16 @@ S21:
 echo DNS Lookup based on Domain Name
 echo ------------------------------------------
 set /p dnsdomain= Enter a Domain Name:
-nslookup %dnsdomain% 1.1.1.1
+read -p "Enter a Domain Name:" dnsdomain
+nslookup %dnsdomain 1.1.1.1
 sleep
 jumpto start
 
 S22:
 echo DNS Reverse Lookup based on IP Address
 echo ------------------------------------------
-set /p dnsipaddr= Enter an IP Address:
-nslookup %dnsipaddr% 1.1.1.1
+read -p "Enter an IP Address:" dnsipaddr
+nslookup %dnsipaddr 1.1.1.1
 sleep
 jumpto start
 
