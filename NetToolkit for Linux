@@ -163,13 +163,13 @@ if "%X%" == "25" (
 if "%X%" == "26" (
     jumpto S26
 )
-goto end
+jumpto end
 
 W:
 cd "C:\Program Files\Wireshark"
 start WIRESHARK.EXE
-pause
-goto start
+sleep
+jumpto start
 
 I:
 start "" https://www.cellstream.com
@@ -180,7 +180,7 @@ start "" https://www.ipfingerprints.com
 start "" https://broadbandmap.fcc.gov/home
 start "" https://rsoe-edis.org/eventMap
 start "" https://www.rfc-editor.org/search/rfc_search.php
-pause
+sleep
 jumpto start
 
 P: 
@@ -217,10 +217,10 @@ echo =================================================================== >> ping
 echo.
 echo Results written to pingscan-results.txt file.
 echo.
-pause
+sleep
 jumpto start
  
-:S1
+S1:
 echo Please wait... Gathering system information.
 echo ============================================
 echo OPERATING SYSTEM Information
@@ -245,59 +245,59 @@ echo --------------------------------------------
 ipconfig | findstr IPv4
 ipconfig | findstr IPv6
 
-pause
+sleep
 jumpto start
 
-:S2
+S2:
 echo View the IP configuration - all interfaces
 echo ------------------------------------------
 ipconfig /all
-pause
+sleep
 jumpto start
 
-:S3
+S3:
 echo Renew the IP Addresses on ALL Interfaces
 echo ------------------------------------------
 ipconfig /renew-all
-pause
-goto start
+sleep
+jumpto start
 
-:S4
+S4:
 echo Release the IP Addresses on ALL Interfaces
 echo ------------------------------------------
 ipconfig /release
-pause
-goto start
+sleep
+jumpto start
 
-:S5
+S5:
 echo Display the MAC Addresses of Interfaces
 echo ------------------------------------------
 getmac /v
-pause
-goto start
+sleep
+jumpto start
 
-:S6
+S6:
 echo Display the current DNS Cache
 echo ------------------------------------------
 ipconfig /displaydns
-pause
-goto start
+sleep
+jumpto start
 
-:S7
+S7:
 echo Flush the DNS Cache
 echo ------------------------------------------
 ipconfig /flushdns
-pause
-goto start
+sleep
+jumpto start
 
-:S8
+S8:
 echo Ping the Google DNS at 8.8.8.8
 echo ------------------------------------------
 ping 8.8.8.8
-pause
-goto start
+sleep
+jumpto start
 
-:S9
+S9:
 echo Ping a particular IP Address
 echo ------------------------------------------
 set /p ipaddr= Enter IP/Domain:
@@ -305,81 +305,81 @@ for /l %%z in (1,1,20) do (
 	echo Ping Attempt #%%z 
 	ping  -n 1 %ipaddr% | find "TTL="
 )
-pause
-goto start
+sleep
+jumpto start
 
-:S10
+S10:
 echo Traceroute to the Google DNS at 8.8.8.8
 echo ------------------------------------------
 tracert 8.8.8.8
-pause
-goto start
+sleep
+jumpto start
 
-:S11
+S11:
 echo Changing to the Ethernet Interface
 echo ------------------------------------------
 netsh interface set interface name="Ethernet" admin=ENABLED
 netsh interface set interface name="Wi-Fi" admin=DISABLED
-pause
-goto start   
+sleep
+jumpto start   
     
     
-:S12
+S12:
 echo Changing to the Wi-Fi Interface
 echo ------------------------------------------
 netsh interface set interface name="Ethernet" admin=DISABLED
 netsh interface set interface name="Wi-Fi" admin=ENABLED
-pause
-goto start
+sleep
+jumpto start
 
-:S13
+S13:
 echo Disabling all Network Interfaces
 echo ------------------------------------------
 netsh interface set interface name="Ethernet" admin=DISABLED
 netsh interface set interface name="Wi-Fi" admin=DISABLED
-pause
-goto start
+sleep
+jumpto start
 
-:S14
+S14:
 echo Display Wi-Fi Interface Details
 echo ------------------------------------------
 netsh wlan show interface
-pause
-goto start
+sleep
+jumpto start
 
-:S15
+S15:
 echo Display Wi-Fi Profiles
 echo ------------------------------------------
 netsh wlan show profile
-pause
-goto start
+sleep
+jumpto start
 
-:S16
+S16:
 echo Delete a Wi-Fi Profile
 echo ------------------------------------------
 set /p wifiprofile= Enter Wi-Fi Profile Name:
 netsh wlan delete profile %wifiprofile%
-pause
-goto start
+sleep
+jumpto start
 
-:S17
+S17:
 echo Delete ALL Wi-Fi Profiles
 echo ------------------------------------------
 echo This action will remove all Wi-Fi profiles including your current profile.
 echo You will need to reconnect.
 pause
 netsh wlan delete profile *
-pause
-goto start
+sleep
+jumpto start
 
-:S18
+S18:
 echo Display the Wi-Fi Drivers
 echo ------------------------------------------
 netsh wlan show drivers
-pause
-goto start
+sleep
+jumpto start
 
-:S19
+S19:
 echo Display Wi-Fi Networks and Keys
 echo ------------------------------------------
 if exist wifi-keys.txt del /F wifi-keys.txt
@@ -409,60 +409,60 @@ echo The results of this routine can be found in the file wifi-keys.txt
 echo Hit any key to output to screen.
 pause
 type wifi-keys.txt
-pause
-goto start
+sleep
+jumpto start
 
-:S20
+S20:
 echo Display Nearby Wi-Fi Networks
 echo ------------------------------------------
 netsh wlan show networks mode=bssid
-pause
-goto start
+sleep
+jumpto start
 
-:S21
+S21:
 echo DNS Lookup based on Domain Name
 echo ------------------------------------------
 set /p dnsdomain= Enter a Domain Name:
 nslookup %dnsdomain% 1.1.1.1
-pause
-goto start
+sleep
+jumpto start
 
-:S22
+S22:
 echo DNS Reverse Lookup based on IP Address
 echo ------------------------------------------
 set /p dnsipaddr= Enter an IP Address:
 nslookup %dnsipaddr% 1.1.1.1
-pause
-goto start
+sleep
+jumpto start
 
-:S23
+S23:
 echo Display the Computer's IPv4 Route Table
 echo ------------------------------------------
 route print -4
-pause
-goto start
+sleep
+jumpto start
 
-:S24
+S24:
 echo Display the Computer's IPv6 Route Table
 echo ------------------------------------------
 route print -6
-pause
-goto start
+sleep
+jumpto start
 
-:S25
+S25:
 echo Display the Computer's IPv4 ARP Cache
 echo ------------------------------------------
 arp -a
-pause
-goto start
+sleep
+jumpto start
 
-:S26
+S26:
 echo Display the Computer's IPv6 Neighbor Cache
 echo ------------------------------------------
 netsh interface ipv6 show neighbors
-pause
-goto start
+sleep
+jumpto start
 
-:end
+end:
 echo Terminating...
-pause
+sleep
