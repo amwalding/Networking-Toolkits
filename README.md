@@ -13,10 +13,7 @@ What is our Toolkit? It is a little executable that runs only on Windows systems
  ###                          by Andrew Walding
  ###              www.cellstream.com   www.netscionline.com
 <samp>+------------------------------------+-------------------------------------+<br>
-<table>
-<samp>+------------------------------------+-------------------------------------+<br>
-<tr>
-<td>
++------------------------------------+-------------------------------------+<br>
 | 1) System Information              | 14) Display Wi-Fi Interface details |<br>
 | 2) View IP Config                  | 15) Display Wi-Fi Profiles          |<br>
 | 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |<br>
@@ -34,9 +31,8 @@ What is our Toolkit? It is a little executable that runs only on Windows systems
 |                                    |                                     |<br>
 | w) Start the Wireshark Progam      |  i) Launch Web Browser to Key Sites |<br>
 | p) Ping Scan a /24 subnet          |                                     |<br>
-|                                    |                                     |<br></table>
+|                                    |                                     |<br>
 +------------------------------------+-------------------------------------+<br></samp>
-</tr>
-</td>
+
 
 As you can see, it has just about everything you need. Let me know if you would like to see something added.
