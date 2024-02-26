@@ -1,20 +1,22 @@
 # WinNetToolkit
-My Windows Networking Toolkit batch file/script.
+#My Windows Networking Toolkit batch file/script.
+
 This is a Windows only batch file.
 Well folks, I have decided to make this toolkit available to all. Just download it here: https://www.cellstream.com/2024/02/17/our-windows-networking-toolkit/
 
 If you work in networking and you have to use a Windows machine, it is literally impossible to memorize all the networking commands. I have written numerous articles discussing some of the features in the toolkit. You can peruse and find these articles here.
 
 What is our Toolkit? It is a little executable that runs only on Windows systems in the command line space. It is a menu driven program that will execute a bunch of very desirable networking focused commands. Here is the primary interface:
-               Welcome to the Windows Networking Toolkit
-                =========================================
-                           by Andrew Walding
-               www.cellstream.com   www.netscionline.com
 
- "+------------------------------------+-------------------------------------+"
- "| 1) System Information              | 14) Display Wi-Fi Interface details |"
- "| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |"
- "| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |"
+ #              Welcome to the Windows Networking Toolkit
+ #               =========================================
+ #                          by Andrew Walding
+ #              www.cellstream.com   www.netscionline.com
+
++------------------------------------+-------------------------------------+"
+| 1) System Information              | 14) Display Wi-Fi Interface details |"
+| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |"
+| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |"
  "| 4) Release current IP Addresses    | 17) Delete ALL Wi-Fi Profiles       |"
  "| 5) Display the MAC Addresses       | 18) Display Wi-Fi Driver Information|"
  "| 6) Display the DNS Cache           | 19) Display Wi-Fi Networks and Keys |"
