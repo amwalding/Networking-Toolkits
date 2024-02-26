@@ -64,103 +64,103 @@ if %X = "1" (
     jumpto S1
 )
 
-if "%X%" == "2" (
+if %X = "2" (
     jumpto S2
 )
 
-if "%X%" == "3" (
+if %X = "3" (
     jumpto S3
 )
 
-if "%X%" == "4" (
+if %X = "4" (
     jumpto S4
 )
 
-if "%X%" == "5" (
+if %X = "5" (
     jumpto S5
 )
 
-if "%X%" == "6" (
+if %X = "6" (
     jumpto S6
 )
 
-if "%X%" == "7" (
+if %X = "7" (
     jumpto S7
 )
 
-if "%X%" == "8" (
+if %X = "8" (
     jumpto S8
 )
 
-if "%X%" == "9" (
+if %X = "9" (
     jumpto S9
 )
 
-if "%X%" == "10" (
+if %X = "10" (
     jumpto S10
 )
 
-if "%X%" == "11" (
+if %X = "11" (
     jumpto S11
 )
 
-if "%X%" == "12" (
+if %X = "12" (
     jumpto S12
 )
 
-if "%X%" == "13" (
+if %X = "13" (
     jumpto S13
 )
 
-if "%X%" == "14" (
+if %X = "14" (
     jumpto S14
 )
 
-if "%X%" == "15" (
+if %X = "15" (
     jumpto S15
 )
 
-if "%X%" == "16" (
+if %X = "16" (
     jumpto S16
 )
 
-if "%X%" == "17" (
+if %X = "17" (
     jumpto S17
 )
 
-if "%X%" == "18" (
+if %X = "18" (
     jumpto S18
 )
 
-if "%X%" == "19" (
+if %X = "19" (
     jumpto S19
 )
 
-if "%X%" == "20" (
+if %X = "20" (
     jumpto S20
 )
 
-if "%X%" == "21" (
+if %X = "21" (
     jumpto S21
 )
 
-if "%X%" == "22" (
+if %X = "22" (
     jumpto S22
 )
 
-if "%X%" == "23" (
+if %X = "23" (
     jumpto S23
 )
 
-if "%X%" == "24" (
+if %X = "24" (
     jumpto S24
 )
 
-if "%X%" == "25" (
+if %X = "25" (
     jumpto S25
 )
 
-if "%X%" == "26" (
+if %X = "26" (
     jumpto S26
 )
 jumpto end
