@@ -1,5 +1,5 @@
 # WinNetToolkit
-###My Windows Networking Toolkit batch file/script.
+My Windows Networking Toolkit batch file/script.
 
 This is a Windows only batch file.
 Well folks, I have decided to make this toolkit available to all. Just download it here: https://www.cellstream.com/2024/02/17/our-windows-networking-toolkit/
@@ -36,3 +36,7 @@ What is our Toolkit? It is a little executable that runs only on Windows systems
 
 
 As you can see, it has just about everything you need. Let me know if you would like to see something added.
+
+
+**Update**
+Working an a Linux equivalent BASH file.  This is currently a work in progress.
