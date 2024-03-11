@@ -3,6 +3,7 @@ My Windows Networking Toolkit batch file/script.
 
 This is a Windows only batch file.
 Well folks, I have decided to make this toolkit available to all. Just download it here: https://www.cellstream.com/2024/02/17/our-windows-networking-toolkit/
+Complete instructions are available here: https://www.cellstream.com/2024/03/08/usage-instructions-for-our-windows-networking-toolkit/ 
 
 If you work in networking and you have to use a Windows machine, it is literally impossible to memorize all the networking commands. I have written numerous articles discussing some of the features in the toolkit. You can peruse and find these articles here.
 
