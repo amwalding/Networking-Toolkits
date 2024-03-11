@@ -1,3 +1,4 @@
+![Visitor Count](https://profile-counter.glitch.me/amwalding6/count.svg)
 # WinNetToolkit
 My Windows Networking Toolkit batch file/script.
 
