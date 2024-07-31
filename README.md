@@ -3,7 +3,8 @@
 My Windows and Linux Networking Toolkits batch file/script and bash file.
 
 The WinNetToolkit_vX is the Windows version of my toolkit.  This is a batch file.
-NetToolkit for Linus is as it says - for Linux.  This is a bash file.
+
+NetToolkit for Linux is as it says - for Linux.  This is a bash file.
 
 Well folks, I have decided to make these toolkits available to all. You can take them here or...
 
