@@ -1,469 +1,64 @@
-#
-# This is a Linux Networking Tools Bash File
-#
-# The idea is to provide the user with a simple way to execute a number of different
-# networking tools simply from a menu driven interface.
-#
-# Written by Andrew Walding, 1/1/2024
-# Version 2.0
-#
-function jumpto
-{
-    label=$1
-    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
-    eval "$cmd"
-    exit
-}
-echo Windows Networking Toolkit - CellStream, Inc.
-:start
+Version 1
+
+#! /bin/bash
+while :
+do
 clear
-echo                Welcome to the Linux Networking Toolkit
-echo                =======================================
-echo                            by Andrew Walding
-echo                            CellStream, Inc.
-echo                www.cellstream.com   www.netscionline.com
+echo "                Welcome to the Linux Networking Toolkit"
+echo "                ======================================="
+echo "                            by Andrew Walding"
+echo "                            CellStream, Inc."
+echo "                www.cellstream.com   www.netscionline.com"
 echo
-echo Select an item, hit Q to quit.
+echo "Select an item, hit CTRL-C to quit."
 echo
 echo "+------------------------------------+-------------------------------------+"
-echo "| 1) System Information              | 14) Display All Interface details   |"
+echo "| 1) System Information              | 14) Display Wi-Fi Interface details |"
 echo "| 2) View IP Config                  | 15) Display Wi-Fi Profiles          |"
 echo "| 3) Renew IP Addressing             | 16) Delete a Wi-Fi Profile          |"
 echo "| 4) Release current IP Addresses    | 17) Delete ALL Wi-Fi Profiles       |"
 echo "| 5) Display the MAC Addresses       | 18) Display Wi-Fi Driver Information|"
-echo "| 6) Display the DNS Cache           | 19) Display Wi-Fi Networks and Keys |"
+echo "| 6) Display the DNS Cache           | 19) ******************************* |"
 echo "| 7) Flush the DNS Cache             | 20) Display Nearby Wi-Fi Networks   |"
 echo "| 8) Ping Google DNS                 | 21) DNS Lookup - domain             |"
 echo "| 9) Ping a specific IP Address      | 22) DNS Reverse Lookup - IP Address |"
 echo "|10) Traceroute to Google DNS        | 23) Display the IPv4 Routing Table  |"
 echo "|11) Use only LAN network            | 24) Display the IPv6 Routing Table  |"
 echo "|12) Use only WLAN network           | 25) Display the IPv4 ARP Cache      |"
-echo "|13) Disable All interfaces          | 26) Display the IPv6 Neighbor Cache |"
+echo "|13) ***********************         | 26) Display the IPv6 Neighbor Cache |"
 echo "+------------------------------------+-------------------------------------+"
 echo "|                                    |                                     |"
 echo "| w) Start the Wireshark Progam      |  i) Launch Web Browser to Key Sites |"
 echo "| p) Ping Scan a /24 subnet          |                                     |"
 echo "|                                    |                                     |"
 echo "+------------------------------------+-------------------------------------+"
-
-read -p "Your Selection :" X
-
-if %X = "w" (
-    jumpto W
-)
-
-if %X = "p" (
-    jumpto P
-)
-
-if %X = "i" (
-    jumpto I
-)
-
-if %X = "1" (
-    jumpto S1
-)
-
-if %X = "2" (
-    jumpto S2
-)
-
-if %X = "3" (
-    jumpto S3
-)
-
-if %X = "4" (
-    jumpto S4
-)
-
-if %X = "5" (
-    jumpto S5
-)
-
-if %X = "6" (
-    jumpto S6
-)
-
-if %X = "7" (
-    jumpto S7
-)
-
-if %X = "8" (
-    jumpto S8
-)
-
-if %X = "9" (
-    jumpto S9
-)
-
-if %X = "10" (
-    jumpto S10
-)
-
-if %X = "11" (
-    jumpto S11
-)
-
-if %X = "12" (
-    jumpto S12
-)
-
-if %X = "13" (
-    jumpto S13
-)
-
-if %X = "14" (
-    jumpto S14
-)
-
-if %X = "15" (
-    jumpto S15
-)
-
-if %X = "16" (
-    jumpto S16
-)
-
-if %X = "17" (
-    jumpto S17
-)
-
-if %X = "18" (
-    jumpto S18
-)
-
-if %X = "19" (
-    jumpto S19
-)
-
-if %X = "20" (
-    jumpto S20
-)
-
-if %X = "21" (
-    jumpto S21
-)
-
-if %X = "22" (
-    jumpto S22
-)
-
-if %X = "23" (
-    jumpto S23
-)
-
-if %X = "24" (
-    jumpto S24
-)
-
-if %X = "25" (
-    jumpto S25
-)
-
-if %X = "26" (
-    jumpto S26
-)
-jumpto end
-
-W:
-cd "C:\Program Files\Wireshark"
-start WIRESHARK.EXE
-sleep
-jumpto start
-
-I:
-start "" https://www.cellstream.com
-start "" https://netscionline.com
-start "" https://www.whatsmyip.org
-start "" https://www.macvendorlookup.com
-start "" https://www.ipfingerprints.com
-start "" https://broadbandmap.fcc.gov/home
-start "" https://rsoe-edis.org/eventMap
-start "" https://www.rfc-editor.org/search/rfc_search.php
-sleep
-jumpto start
-
-P: 
-echo Ping Scan for a /24 IPv4 Subnet.
-echo.
-set /p X=Enter the first three octets of the Subnet you wish to scan (i.e. 192.168.1):
-setlocal ENABLEDELAYEDEXPANSION
-if exist pingscan-results.txt del /F pingscan-results.txt
-
-echo The subnet that will be ping scanned: %X%.0/24
-for /l %%i in (1,1,254) do @(
-	set "host_ip="
-	set "host_ip=%%i"
-	set "target="
-	set "target=%X%.!host_ip!"
-	echo Pinging: !target!
-	ping !target! -n 1 -w 100 | find /I "Reply" >> pingscan-results.txt
-	)
-
-echo Cleaned: >> pingscan-results.txt
-	
-for /f "tokens=3 delims= " %%a in (pingscan-results.txt) do (
-	set S=%%a
-	set S=!S:~0,-1!
-	>> pingscan-results.txt echo.!S!
-	)
-
-echo =================================================================== >> pingscan-results.txt
-echo Ping Scan Results of Systems that Responded >> pingscan-results.txt
-echo The Subnet that was scanned: %X%.0/24 >> pingscan-results.txt
-echo Date: %date%  Time: %time%  >> pingscan-results.txt
-echo Brought to you by CellStream, Inc. www.cellstream.com >> pingscan-results.txt
-echo =================================================================== >> pingscan-results.txt
-echo.
-echo Results written to pingscan-results.txt file.
-echo.
-sleep
-jumpto start
- 
-S1:
-echo Please wait... Gathering system information.
-echo ============================================
-echo OPERATING SYSTEM Information
-echo --------------------------------------------
-systeminfo | findstr /c:"OS Name"
-systeminfo | findstr /c:"OS Version"
-echo ============================================
-echo BIOS Information
-echo --------------------------------------------
-systeminfo | findstr /c:"System Type"
-echo ============================================
-echo MEMORY Information
-echo --------------------------------------------
-systeminfo | findstr /c:"Total Physical Memory"
-echo ============================================
-echo CPU Information
-echo --------------------------------------------
-wmic cpu get name
-echo ============================================
-echo L3 NETWORK ADDRESS Information
-echo --------------------------------------------
-ipconfig | findstr IPv4
-ipconfig | findstr IPv6
-
-sleep
-jumpto start
-
-S2:
-echo View the IP configuration - all interfaces
-echo ------------------------------------------
-ipconfig /all
-sleep
-jumpto start
-
-S3:
-echo Renew the IP Addresses on ALL Interfaces
-echo ------------------------------------------
-ipconfig /renew-all
-sleep
-jumpto start
-
-S4:
-echo Release the IP Addresses on ALL Interfaces
-echo ------------------------------------------
-ipconfig /release
-sleep
-jumpto start
-
-S5:
-echo Display the MAC Addresses of Interfaces
-echo ------------------------------------------
-getmac /v
-sleep
-jumpto start
-
-S6:
-echo Display the current DNS Cache
-echo ------------------------------------------
-ipconfig /displaydns
-sleep
-jumpto start
-
-S7:
-echo Flush the DNS Cache
-echo ------------------------------------------
-ipconfig /flushdns
-sleep
-jumpto start
-
-S8:
-echo Ping the Google DNS at 8.8.8.8
-echo ------------------------------------------
-ping 8.8.8.8
-sleep
-jumpto start
-
-S9:
-echo Ping a particular IP Address
-echo ------------------------------------------
-set /p ipaddr= Enter IP/Domain:
-for /l %%z in (1,1,20) do (
-	echo Ping Attempt #%%z 
-	ping  -n 1 %ipaddr% | find "TTL="
-)
-sleep
-jumpto start
-
-S10:
-echo Traceroute to the Google DNS at 8.8.8.8
-echo ------------------------------------------
-tracert 8.8.8.8
-sleep
-jumpto start
-
-S11:
-echo Changing to the Ethernet Interface
-echo ------------------------------------------
-netsh interface set interface name="Ethernet" admin=ENABLED
-netsh interface set interface name="Wi-Fi" admin=DISABLED
-sleep
-jumpto start   
-    
-    
-S12:
-echo Changing to the Wi-Fi Interface
-echo ------------------------------------------
-netsh interface set interface name="Ethernet" admin=DISABLED
-netsh interface set interface name="Wi-Fi" admin=ENABLED
-sleep
-jumpto start
-
-S13:
-echo Disabling all Network Interfaces
-echo ------------------------------------------
-netsh interface set interface name="Ethernet" admin=DISABLED
-netsh interface set interface name="Wi-Fi" admin=DISABLED
-sleep
-jumpto start
-
-S14:
-echo Display All Interface Details
-echo ------------------------------------------
-lshw -class network
-sleep
-jumpto start
-
-S15:
-echo Display Wi-Fi Profiles
-echo ------------------------------------------
-netsh wlan show profile
-sleep
-jumpto start
-
-S16:
-echo Delete a Wi-Fi Profile
-echo ------------------------------------------
-set /p wifiprofile= Enter Wi-Fi Profile Name:
-netsh wlan delete profile %wifiprofile%
-sleep
-jumpto start
-
-S17:
-echo Delete ALL Wi-Fi Profiles
-echo ------------------------------------------
-echo This action will remove all Wi-Fi profiles including your current profile.
-echo You will need to reconnect.
-pause
-netsh wlan delete profile *
-sleep
-jumpto start
-
-S18:
-echo Display the Wi-Fi Drivers
-echo ------------------------------------------
-netsh wlan show drivers
-sleep
-jumpto start
-
-S19:
-echo Display Wi-Fi Networks and Keys
-echo ------------------------------------------
-if exist wifi-keys.txt del /F wifi-keys.txt
-echo ======================================================================= >> wifi-keys.txt
-echo This profiles snapshot taken on: >> wifi-keys.txt
-echo Date: %date%  Time: %time%  >> wifi-keys.txt
-echo Brought to you by CellStream, Inc. www.cellstream.com >> wifi-keys.txt
-echo ======================================================================= >> wifi-keys.txt
-setlocal enabledelayedexpansion
-echo.
-echo Generating report.....
-
-netsh wlan show profiles > temp
-set "filename=temp"
-
-for /f "tokens=2 delims=:" %%a in ('type "%filename%" ^| find ":"') do (
-    set "line=%%a"
-    set "line=!line:~1!"
-    netsh wlan show profiles name="!line!" key=clear >> wifi-keys.txt
-    echo  ======================================================================= >> wifi-keys.txt
-	echo  ======================================================================= >> wifi-keys.txt
-)
-
-del temp
-endlocal
-echo The results of this routine can be found in the file wifi-keys.txt
-echo Hit any key to output to screen.
-pause
-type wifi-keys.txt
-sleep
-jumpto start
-
-S20:
-echo Display Nearby Wi-Fi Networks
-echo ------------------------------------------
-nmcli dev wifi list
-sleep
-jumpto start
-
-S21:
-echo DNS Lookup based on Domain Name
-echo ------------------------------------------
-set /p dnsdomain= Enter a Domain Name:
-read -p "Enter a Domain Name:" dnsdomain
-nslookup %dnsdomain 1.1.1.1
-sleep
-jumpto start
-
-S22:
-echo DNS Reverse Lookup based on IP Address
-echo ------------------------------------------
-read -p "Enter an IP Address:" dnsipaddr
-nslookup %dnsipaddr 1.1.1.1
-sleep
-jumpto start
-
-S23:
-echo Display the Computer's IPv4 Route Table
-echo ------------------------------------------
-route -n
-sleep
-jumpto start
-
-S24:
-echo Display the Computer's IPv6 Route Table
-echo ------------------------------------------
-route -n -6
-sleep
-jumpto start
-
-S25:
-echo Display the Computer's IPv4 ARP Cache
-echo ------------------------------------------
-arp
-sleep
-jumpto start
-
-S26:
-echo Display the Computer's IPv6 Neighbor Cache
-echo ------------------------------------------
-ip -6 neighbor show
-sleep
-jumpto start
-
-end:
-echo Terminating...
-sleep
+echo
+echo -n "Your Selection:" ; read X
+clear
+case $X in 
+	1) echo System information && echo ------------------ && uname -a && uname -r && head -n1 /etc/issue && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	2) echo View the IP configuration - all interfaces && echo ------------------------------------------ && ifconfig && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	3) echo “Renewing IP addresses...” && echo ---------------------- && NIC=$(netstat -r | awk '/default/ {print $NF}') && sudo dhclient -r -v $NIC && sudo dhclient -v $NIC && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	4) echo Releasing current IP address configuration... && echo ---------------------------------------------- && sudo dhclient -r && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	5) echo Displaying the MAC addresses of all interfaces && echo ---------------------------------------------- && ip link show && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	6) echo Is the DNS cache active && systemctl is-active systemd-resolved && echo Here are the DNS Cache Stats && resolvectl statistics && echo DNS Cache being written to dnscache.txt && sudo killall -USR1 systemd-resolved && sudo journalctl -u systemd-resolved > dnscache.txt && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	7) echo Flushing the DNS Cache && echo ---------------------- && resolvectl flush-caches && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	8) echo Pinging the Google DNS && ping 8.8.8.8 -c 10 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	9) echo -n Enter and address you wish to ping: && read -r ipaddr && ping $ipaddr -c 10 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	10) echo Trace the Route to the Google DNS && traceroute 8.8.8.8 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	11) echo Use only the LAN network && ip link set wlo1 down && echo WLAN interface shut down. Use ‘ip link set wlo1 up’ to restore. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	12) echo Use only the WLAN network && ip link set eno1 down && echo LAN interface shut down. Use ‘ip link set eno1 up’ to restore. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	14) echo Wi-Fi Interfaces && echo ---------------- && iwconfig && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	15) echo Display Wi-Fi Profiles && echo --------------------- && ls /etc/NetworkManager/system-connections && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	16) echo Deleting a Wi-Fi Profile && echo ------------------------ && echo -n Enter Profile name (including quotes): && read -r proname && echo && rm /etc/NetworkManager/system-connections/$proname && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	17) echo Deleting all WLAN Profiles.... && echo (Note: this will kill your network connection!) && read -n1 -r -p "Press any key to continue..." key && rm /etc/NetworkManager/system-connections/* && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	18) echo Finding Wi-Fi Driver info.... && echo && lspci -vv | grep -i wireless && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	20) echo Finding nearby Wi-Fi Networks: && nmcli -t -f ALL dev wifi && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	21) echo DNS Lookup && echo ---------- && echo -n Enter URL: && read -r url && echo && nslookup $url 1.1.1.1 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	22) echo DNS Reverse Lookup && echo ------------------ && echo -n Enter IP Address: && read -r ipadd && echo && nslookup $ipaddr 1.1.1.1 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	23) echo The IPv4 Routing Table && echo ---------------------- && route -A inet && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	24) echo The IPv6 Routing Table && echo ---------------------- && route -A inet6 && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	25) echo The IPv4 ARP Cache && echo ------------------ && arp -a && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+	26) echo The IPv6 Neighbor Table && echo ----------------------- && ip -6 neighbor show && echo Done. && read -n1 -r -p "Press any key to continue..." key && echo ;;
+esac
+done
