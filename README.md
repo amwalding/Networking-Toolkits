@@ -10,7 +10,7 @@ Well folks, I have decided to make these toolkits available to all. You can take
 Download the Windows one here on GitHub or here: https://www.cellstream.com/2024/02/17/our-windows-networking-toolkit/
 Complete instructions for the Windows tool kit are available here: https://www.cellstream.com/2024/03/08/usage-instructions-for-our-windows-networking-toolkit/ 
 
-Download the Linux code here on GitHub or here:
+Download the Linux code here on GitHub or here: https://www.cellstream.com/download/linux-networking-toolkit/
 I have not created a complete instruction for the Linux toolkit.
 
 If you work in networking and you have to use a Windows or Linux machine, it is literally impossible to memorize all the networking commands. I have written numerous articles discussing some of the features in these toolkits. You can peruse and find these articles here: 
