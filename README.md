@@ -26,4 +26,8 @@ As you can see, it has just about everything you need. Let me know if you would 
 
 
 **Update**
-Working an a Linux equivalent BASH file.  This is currently a work in progress.
+Working an a Linux equivalent BASH file.  This is currently a work in progress.  Here is what it looks like so far:
+
+![LinuxNetTool](https://github.com/user-attachments/assets/3c921082-fdc1-403f-936c-480278e1b61c)
+
+Comments?
