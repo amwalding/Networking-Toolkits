@@ -1,5 +1,5 @@
 ![Visitor Count](https://profile-counter.glitch.me/amwalding6/count.svg)
-# WinNetToolkit
+# Windows Networking Toolkit and Linux Networking Toolkit
 My Windows and Linux Networking Toolkits batch file/script and bash file.
 
 The WinNetToolkit_vX is the Windows version of my toolkit.  This is a batch file.
