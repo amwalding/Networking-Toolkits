@@ -1,0 +1,520 @@
+@echo off
+rem
+rem This is a Windows Networking Batch File
+rem
+rem The idea is to provide the user with a simple way to execute a number of different
+rem networking tools simply from a menu driven interface.
+rem
+rem Written by Andrew Walding, 8/05/2024
+rem Version 7
+rem
+color E
+title Windows Networking Toolkit - CellStream, Inc.
+:start
+cls
+echo                Welcome to the Windows Networking Toolkit v7
+echo  ============================================================================
+echo                     by Andrew Walding, CellStream, Inc.
+echo                 www.cellstream.com   www.netscionline.com
+echo.
+echo Select an item, hit Q to quit.
+echo "+------------------------------------+-------------------------------------+"
+echo "| 1) System Information              | 15) Display Wi-Fi Interface details |"
+echo "| 2) View IP Config                  | 16) Display Wi-Fi Profiles          |"
+echo "| 3) Renew IP Addressing             | 17) Delete a Wi-Fi Profile          |"
+echo "| 4) Release current IP Addresses    | 18) Delete ALL Wi-Fi Profiles       |"
+echo "| 5) Display the MAC Addresses       | 19) Display Wi-Fi Driver Information|"
+echo "| 6) Display the DNS Cache           | 20) Display Wi-Fi Networks and Keys |"
+echo "| 7) Flush the DNS Cache             | 21) Display Nearby Wi-Fi Networks   |"
+echo "| 8) Ping Google DNS                 | 22) DNS Lookup - domain             |"
+echo "| 9) Ping a specific IP Address      | 23) DNS Reverse Lookup - IP Address |"
+echo "|10) Traceroute to Google DNS        | 24) Display the IPv4 Routing Table  |"
+echo "|11) Traceroute to a specific IP     | 25) Display the IPv6 Routing Table  |"
+echo "|12) Use only LAN network            | ************************************|"
+echo "|13) Use only WLAN network           | 26) Display the IPv4 ARP Cache      |"
+echo "|14) Disable All interfaces          | 27) Clear the IPv4 ARP Cache*       |"
+echo "|                                    | 28) Display the IPv6 Neighbor Cache |"
+echo "| * - means run as administrator     | 29) Clear the IPv6 Neighbor Cache*  |"
+echo "+------------------------------------+-------------------------------------+"
+echo "|                                    |                                     |"
+echo "| w) Start the Wireshark Progam      |  i) Launch Web Browser to Key Sites |"
+echo "| p) Ping Scan a /24 subnet          |  b) Launch Web Page to calc BW      |"
+echo "| s) Watch network statistics        |                                     |"
+echo "+------------------------------------+-------------------------------------+"
+
+set /p X=Your Selection :
+
+if "%X%" == "w" (
+    goto W
+)
+
+if "%X%" == "s" (
+    goto S
+)
+
+if "%X%" == "p" (
+    goto P
+)
+
+if "%X%" == "i" (
+    goto I
+)
+
+if "%X%" == "b" (
+    goto B
+)
+
+if "%X%" == "1" (
+    goto S1
+)
+
+if "%X%" == "2" (
+    goto S2
+)
+
+if "%X%" == "3" (
+    goto S3
+)
+
+if "%X%" == "4" (
+    goto S4
+)
+
+if "%X%" == "5" (
+    goto S5
+)
+
+if "%X%" == "6" (
+    goto S6
+)
+
+if "%X%" == "7" (
+    goto S7
+)
+
+if "%X%" == "8" (
+    goto S8
+)
+
+if "%X%" == "9" (
+    goto S9
+)
+
+if "%X%" == "10" (
+    goto S10
+)
+
+if "%X%" == "11" (
+    goto S11
+)
+
+if "%X%" == "12" (
+    goto S12
+)
+
+if "%X%" == "13" (
+    goto S13
+)
+
+if "%X%" == "14" (
+    goto S14
+)
+
+if "%X%" == "15" (
+    goto S15
+)
+
+if "%X%" == "16" (
+    goto S16
+)
+
+if "%X%" == "17" (
+    goto S17
+)
+
+if "%X%" == "18" (
+    goto S18
+)
+
+if "%X%" == "19" (
+    goto S19
+)
+
+if "%X%" == "20" (
+    goto S20
+)
+
+if "%X%" == "21" (
+    goto S21
+)
+
+if "%X%" == "22" (
+    goto S22
+)
+
+if "%X%" == "23" (
+    goto S23
+)
+
+if "%X%" == "24" (
+    goto S24
+)
+
+if "%X%" == "25" (
+    goto S25
+)
+
+if "%X%" == "26" (
+    goto S26
+)
+
+if "%X%" == "27" (
+    goto S27
+)
+
+if "%X%" == "28" (
+    goto S28
+)
+
+if "%X%" == "29" (
+    goto S29
+)
+
+goto end
+
+:W
+cd "C:\Program Files\Wireshark"
+start WIRESHARK.EXE
+pause
+goto start
+
+:S
+start cmd.exe /k netstat -s 2
+goto start
+
+:I
+start "" https://www.cellstream.com
+start "" https://netscionline.com
+start "" https://www.whatsmyip.org
+start "" https://www.macvendorlookup.com
+start "" https://www.ipfingerprints.com
+start "" https://www.iptp.net/en_US/iptp-tools/ip-calculator/
+start "" https://broadbandmap.fcc.gov/home
+start "" https://rsoe-edis.org/eventMap
+start "" https://www.rfc-editor.org/search/rfc_search.php
+pause
+goto start
+
+:B
+start "" https://wintelguy.com/wanperf.pl
+pause
+goto start
+
+:P 
+echo Ping Scan for a /24 IPv4 Subnet.
+echo.
+set /p X=Enter the first three octets of the Subnet you wish to scan (i.e. 192.168.1):
+setlocal ENABLEDELAYEDEXPANSION
+if exist pingscan-results.txt del /F pingscan-results.txt
+
+echo The subnet that will be ping scanned: %X%.0/24
+for /l %%i in (1,1,254) do @(
+	set "host_ip="
+	set "host_ip=%%i"
+	set "target="
+	set "target=%X%.!host_ip!"
+	echo Pinging: !target!
+	ping !target! -n 1 -w 100 | find /I "Reply" >> pingscan-results.txt
+	)
+
+echo Cleaned: >> pingscan-results.txt
+	
+for /f "tokens=3 delims= " %%a in (pingscan-results.txt) do (
+	set S=%%a
+	set S=!S:~0,-1!
+	>> pingscan-results.txt echo.!S!
+	)
+
+echo =================================================================== >> pingscan-results.txt
+echo Ping Scan Results of Systems that Responded >> pingscan-results.txt
+echo The Subnet that was scanned: %X%.0/24 >> pingscan-results.txt
+echo Date: %date%  Time: %time%  >> pingscan-results.txt
+echo Brought to you by CellStream, Inc. www.cellstream.com >> pingscan-results.txt
+echo =================================================================== >> pingscan-results.txt
+echo.
+echo Results written to pingscan-results.txt file.
+echo.
+pause
+goto start
+ 
+:S1
+echo Please wait... Gathering system information.
+echo ============================================
+echo OPERATING SYSTEM Information
+echo --------------------------------------------
+systeminfo | findstr /c:"OS Name"
+systeminfo | findstr /c:"OS Version"
+echo ============================================
+echo BIOS Information
+echo --------------------------------------------
+systeminfo | findstr /c:"System Type"
+echo ============================================
+echo MEMORY Information
+echo --------------------------------------------
+systeminfo | findstr /c:"Total Physical Memory"
+echo ============================================
+echo CPU Information
+echo --------------------------------------------
+wmic cpu get name
+echo ============================================
+echo L3 NETWORK ADDRESS Information
+echo --------------------------------------------
+ipconfig | findstr IPv4
+ipconfig | findstr IPv6
+
+pause
+goto start
+
+:S2
+echo View the IP configuration - all interfaces
+echo ------------------------------------------
+ipconfig /all
+pause
+goto start
+
+:S3
+echo Renew the IP Addresses on ALL Interfaces
+echo ------------------------------------------
+ipconfig /renew
+pause
+goto start
+
+:S4
+echo Release the IP Addresses on ALL Interfaces
+echo ------------------------------------------
+ipconfig /release
+pause
+goto start
+
+:S5
+echo Display the MAC Addresses of Interfaces
+echo ------------------------------------------
+getmac /v
+pause
+goto start
+
+:S6
+echo Display the current DNS Cache
+echo ------------------------------------------
+ipconfig /displaydns
+pause
+goto start
+
+:S7
+echo Flush the DNS Cache
+echo ------------------------------------------
+ipconfig /flushdns
+pause
+goto start
+
+:S8
+echo Ping the Google DNS at 8.8.8.8
+echo ------------------------------------------
+ping 8.8.8.8
+pause
+goto start
+
+:S9
+echo Ping a particular IP Address
+echo ------------------------------------------
+set /p ipaddr= Enter IP/Domain:
+for /l %%z in (1,1,20) do (
+	echo Ping Attempt #%%z 
+	ping  -n 1 %ipaddr% | find "TTL="
+)
+pause
+goto start
+
+:S10
+echo Traceroute to the Google DNS at 8.8.8.8
+echo ------------------------------------------
+tracert 8.8.8.8
+pause
+goto start
+
+:S11
+echo Traceroute to a particular IP Address
+echo ------------------------------------------
+set /p ipaddr= Enter IP/Domain:
+tracert %ipaddr%
+pause
+goto start
+
+:S12
+echo Changing to the Ethernet Interface
+echo ------------------------------------------
+netsh interface set interface name="Ethernet" admin=ENABLED
+netsh interface set interface name="Wi-Fi" admin=DISABLED
+pause
+goto start   
+    
+    
+:S13
+echo Changing to the Wi-Fi Interface
+echo ------------------------------------------
+netsh interface set interface name="Ethernet" admin=DISABLED
+netsh interface set interface name="Wi-Fi" admin=ENABLED
+pause
+goto start
+
+:S14
+echo Disabling all Network Interfaces
+echo ------------------------------------------
+netsh interface set interface name="Ethernet" admin=DISABLED
+netsh interface set interface name="Wi-Fi" admin=DISABLED
+pause
+goto start
+
+:S15
+echo Display Wi-Fi Interface Details
+echo ------------------------------------------
+netsh wlan show interface
+pause
+goto start
+
+:S16
+echo Display Wi-Fi Profiles
+echo ------------------------------------------
+netsh wlan show profile
+pause
+goto start
+
+:S17
+echo Delete a Wi-Fi Profile
+echo ------------------------------------------
+set /p wifiprofile= Enter Wi-Fi Profile Name:
+netsh wlan delete profile "%wifiprofile%"
+pause
+goto start
+
+:S18
+echo Delete ALL Wi-Fi Profiles
+echo ------------------------------------------
+echo This action will remove all Wi-Fi profiles including your current profile.
+echo You will need to reconnect.
+pause
+netsh wlan delete profile *
+pause
+goto start
+
+:S19
+echo Display the Wi-Fi Drivers
+echo ------------------------------------------
+netsh wlan show drivers
+pause
+goto start
+
+:S20
+echo Display Wi-Fi Networks and Keys
+echo ------------------------------------------
+if exist wifi-keys.txt del /F wifi-keys.txt
+echo ======================================================================= >> wifi-keys.txt
+echo This profiles snapshot taken on: >> wifi-keys.txt
+echo Date: %date%  Time: %time%  >> wifi-keys.txt
+echo Brought to you by CellStream, Inc. www.cellstream.com >> wifi-keys.txt
+echo ======================================================================= >> wifi-keys.txt
+setlocal enabledelayedexpansion
+echo.
+echo Generating report.....
+
+netsh wlan show profiles > temp
+set "filename=temp"
+
+for /f "tokens=2 delims=:" %%a in ('type "%filename%" ^| find ":"') do (
+    set "line=%%a"
+    set "line=!line:~1!"
+    netsh wlan show profiles name="!line!" key=clear >> wifi-keys.txt
+    echo  ======================================================================= >> wifi-keys.txt
+	echo  ======================================================================= >> wifi-keys.txt
+)
+
+del temp
+endlocal
+echo The results of this routine can be found in the file wifi-keys.txt
+echo Hit any key to output to screen.
+pause
+type wifi-keys.txt
+pause
+goto start
+
+:S21
+echo Display Nearby Wi-Fi Networks
+echo ------------------------------------------
+netsh wlan show networks mode=bssid
+pause
+goto start
+
+:S22
+echo DNS Lookup based on Domain Name
+echo ------------------------------------------
+set /p dnsdomain= Enter a Domain Name:
+nslookup %dnsdomain% 1.1.1.1
+pause
+goto start
+
+:S23
+echo DNS Reverse Lookup based on IP Address
+echo ------------------------------------------
+set /p dnsipaddr= Enter an IP Address:
+nslookup %dnsipaddr% 1.1.1.1
+pause
+goto start
+
+:S24
+echo Display the Computer's IPv4 Route Table
+echo ------------------------------------------
+route print -4
+pause
+goto start
+
+:S25
+echo Display the Computer's IPv6 Route Table
+echo ------------------------------------------
+route print -6
+pause
+goto start
+
+:S26
+echo Display the Computer's IPv4 ARP Cache
+echo ------------------------------------------
+netsh interface ipv4 show neighbors
+pause
+goto start
+
+:S27
+echo Clear the Computer's IPv4 ARP Cache
+echo -----------------------------------
+netsh interface ipv4 delete neighbors
+pause
+goto start
+
+:S28
+echo Display the Computer's IPv6 Neighbor Cache
+echo ------------------------------------------
+netsh interface ipv6 show neighbors
+pause
+goto start
+
+:S29
+echo Clear the Computer's IPv6 Neighbor Cache
+echo ------------------------------------------
+netsh interface ipv6 delete neighbors
+pause
+goto start
+
+:end
+echo Terminating...
+
+
+
+
