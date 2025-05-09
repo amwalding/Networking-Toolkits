@@ -30,4 +30,4 @@ Working an a Linux equivalent BASH file.  This is currently a work in progress. 
 
 ![LinuxNetTool](https://github.com/user-attachments/assets/3c921082-fdc1-403f-936c-480278e1b61c)
 
-Comments?
+Comments are welcomed at our Discord server here: https://discord.gg/3U8q5USm If you would like to see more content and articles like this, please support us by clicking the patron link https://www.patreon.com/cellstream?fan_landing=true where you will receive free bonus access to courses and more, or simply buying us a cup of coffee here: https://www.buymeacoffee.com/awalding !
